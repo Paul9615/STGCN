@@ -19,19 +19,23 @@ def load_adj(dataset_name):
 
     return adj, n_vertex
 
-def load_data(dataset_name, len_train, len_val):
+def load_data(args, len_train, len_val):
+    dataset_name = args.dataset
     dataset_path = './data'
     dataset_path = os.path.join(dataset_path, dataset_name)
     vel = pd.read_csv(os.path.join(dataset_path, 'vel.csv'))
-
-    train = vel[: len_train]
-    val = vel[len_train: len_train + len_val]
-    test = vel[len_train + len_val:]
-    return train, val, test
+    
+    if args.order == True:
+        train = vel[:len_train]    
+        val = vel[len_train:len_train+len_val]
+        return train, val   
+    
+    elif args.order == False:
+        train = vel[:len_train]
+        test = vel[len_train:]
+        return train, test
 
 def data_transform(data, n_his, n_pred, device):
-    # produce data slices for x_data and y_data
-
     n_vertex = data.shape[1]
     len_record = len(data)
     num = len_record - n_his - n_pred
