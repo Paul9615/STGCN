@@ -134,6 +134,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-./Results
-./tuning
-./tuning_1
+# result folder
+Results/
+tuning/

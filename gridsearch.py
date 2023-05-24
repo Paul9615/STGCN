@@ -16,7 +16,6 @@ def search(paras): # gpu_num: int, cheb_ker: int
         for g in gamma:
             for d in de:
                 print(f'the parameters: cheb kernel: {paras[1]} step size: {s} gamma: {g} decay rate: {d}')
-                # val_com = f"python3 main.py --cases=parameter --dataset=pemsd7-m --order=True --Ks=$c --step_size=$z --gamma=$g --weight_decay_rate=$d"
                 val_com = f"python3 main.py --gpu={paras[0]} --cases=parameter --dataset=pemsd7-m --order=True --Ks={paras[1]} --step_size={s} --gamma={g} --weight_decay_rate={d}"
                 val = sb.check_output(val_com, shell=True)
                 sub_res = {'cheb': paras[1], 'step':s, 'gamma':g,'decay':d,'val':val}
@@ -54,7 +53,7 @@ def grid_search():
 
     best_para = sorted_res.head(1)
     
-    best_cheb=best_para['cheb'].item() 
+    best_cheb=best_para['cheb'].item()
     best_cheb=best_para['step'].item() 
     best_gamma=best_para['gamma'].item() 
     best_decay=best_para['decay'].item()
@@ -92,13 +91,3 @@ if __name__ == "__main__":
         best_para = grid_search()
         test(best_para)
     
-
-
-            
-# print(val_res)
-# sort_res = val_res.sort_values(by=['val'])
-# print(sort_res)
-# best_para = sort_res.head(1)
-
-# test_com = f"python3 main.py --cases=tune_test --dataset=pemsd7-m --Ks={int(best_para.iloc[0,0])} --step_size={int(best_para.iloc[0,1])} --gamma={float(best_para.iloc[0,2])} --weight_decay_rate={float(best_para.iloc[0,3])}"
-# test = subprocess.check_output(test_com, shell=True)

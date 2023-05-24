@@ -24,8 +24,6 @@ def set_env(seed, gpu):
     # Set available CUDA devices
     # This option is crucial for an multi-GPU device
     os.environ['CUDA_VISIBLE_DEVICES'] = f'{gpu}'
-    # os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
-    # os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':16:8'
     os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
     os.environ['PYTHONHASHSEED']=str(seed)
     random.seed(seed)
@@ -265,7 +263,6 @@ def test(zscore, loss, model, test_iter, args):
 def save_result(paths, tr_loss_list, test_loss, args): # val_loss_list
     
     pd.DataFrame(tr_loss_list).to_csv(os.path.join(paths, 'train_loss.csv'), sep=',', index=False)
-    # pd.DataFrame(tr_loss_list).to_csv(os.path.join(paths, 'val_loss.csv'), sep=',', index=False)    
     pd.DataFrame(test_loss).to_csv(os.path.join(paths, 'test_loss.csv'), sep=',', index=False)
     
     loss_dict = {"train": tr_loss_list}
@@ -273,7 +270,6 @@ def save_result(paths, tr_loss_list, test_loss, args): # val_loss_list
     epoch_range = np.arange(1, len(loss_dict["train"])+1)
         
     plt.plot(epoch_range, loss_dict["train"], label='train')
-    # plt.plot(epoch_range, loss_dict["val"], label='valid')
     plt.legend()
     plt.title(f'Loss per epoch', fontweight='bold')
     plt.xlabel('Epochs', fontweight='bold')
@@ -283,9 +279,6 @@ def save_result(paths, tr_loss_list, test_loss, args): # val_loss_list
 
 
 if __name__ == "__main__":
-    # Logging
-    #logger = logging.getLogger('stgcn')
-    #logging.basicConfig(filename='stgcn.log', level=logging.INFO)
     logging.basicConfig(level=logging.INFO)
 
     args, device, blocks, paths = get_parameters()
@@ -300,6 +293,5 @@ if __name__ == "__main__":
         loss, es, model, optimizer, scheduler = prepare_model(args, blocks, n_vertex)
         tr_loss_list = train(loss, args, optimizer, scheduler, es, model, train_iter, test_iter)
         test_res = test(zscore, loss, model, test_iter, args)
-        # save_result(paths, tr_loss_list, val_loss_list, test_res, args)
         save_result(paths, tr_loss_list, test_res, args)
         
