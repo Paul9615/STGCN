@@ -79,6 +79,14 @@ if __name__ == "__main__":
     # cheb3.start(); cheb3.join()
     # cheb4.start(); cheb4.join()
     # cheb5.start(); cheb5.join()
+    
+    try:
+        os.mkdir('./tuning')
+    except: 
+        pass
+    
+    
+    
     done = False    
     gpu_ker = [[0,1], [1,2], [2,3], [3,4], [4,5]]
     pool = Pool(processes=5)

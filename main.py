@@ -74,6 +74,7 @@ def get_parameters():
     paths = f'./Results/cases_{args.cases}'
     
     try:
+        os.mkdir('./Results')
         os.mkdir(paths)
     except: 
         pass
