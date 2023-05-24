@@ -15,7 +15,7 @@ Forked from: [hazdzz/STGCN](https://github.com/hazdzz/STGCN)
 ---
 <img src="./figure/temporal_graph.png" style = "zoom:100%">
 
-+ Spatio Temporal Data Mining(STDM) has considered two types of domain features. One is the spatial domain and the other one is the temporal domain. Previous works didn't consider spatial domain(e,g, Support vector machine, k-nearest neighbors algorithm, neural networks, etc). Especially, Recurrent neural networks(RNN) is many uses for widespread time series prediction like traffic prediction. But, it also does not consider the spatial domain and has very complicated. Hence, the spatio-temporal graph convolution networks(STGCN) proposed a prediction model which considers the spatial domain and the temporal domain using graph convolution and 1d convolution. In this repository, 
++ Spatio Temporal Data Mining(STDM) has considered two types of domain features. One is the spatial domain and the other one is the temporal domain. Previous works didn't consider spatial domain(e,g, Support vector machine, k-nearest neighbors algorithm, neural networks, etc). Especially, Recurrent neural networks(RNN) is many uses for widespread time series prediction like traffic prediction. But, it also does not consider the spatial domain and has very complicated. Hence, the spatio-temporal graph convolution networks(STGCN) proposed a prediction model which considers the spatial domain and the temporal domain using graph convolution and 1d convolution. 
 
 
 + [STGCN](https://arxiv.org/abs/1709.04875) are constructed with 3 layers into one block which has 2 temporal layers, 1 spatial layer, and an output layer. 
